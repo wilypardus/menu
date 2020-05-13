@@ -1,1 +1,65 @@
-<p>vista-menu works!</p>
+<app-header></app-header>
+
+<div class="container mt-5">
+    <button (click)="goForward()" type="button" class=" btn btn-sm btn-primary"><i class="fas fa-chevron-left"></i> Volver</button>
+
+    <div class="text-center">
+        <img class="logo-menu" [src]="usuarioMenu.img">
+    </div>
+    <div *ngFor="let menu of _menusService.menuUsr">
+        <div class="mt-3" *ngFor="let categoria of menu.categorias">
+            <div class="text-center bloque-categoria">
+
+                <div class="bloque-categoria-image">
+                    <img class="categoria-image" [src]="categoria.img" *ngIf="categoria.img">
+                    <div class="categoria-title">
+                        <h4> {{categoria.categoria}}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table" style="width: 100%;border-top: 0px solid white!important;">
+                    <tbody style="border-top: 0px solid white!important;">
+                        <tr *ngFor="let plato of categoria.platos">
+                            <th class="will_table" style="width: 60%;" [ngClass]="{'will_tachado' : !plato.activo}">{{plato.plato}}
+                                <br class="mt-2">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.cereal" src="../../../assets/images/alergenos/cereal.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.crustaceo" src="../../../assets/images/alergenos/crustaceo.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.huevo" src="../../../assets/images/alergenos/huevo.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.cereal" src="../../../assets/images/alergenos/pescado.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.cacahuete" src="../../../assets/images/alergenos/cacahuete.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.soja" src="../../../assets/images/alergenos/soja.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.lacteo" src="../../../assets/images/alergenos/lacteo.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.frutoseco" src="../../../assets/images/alergenos/frutoseco.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.apio" src="../../../assets/images/alergenos/apio.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.mostaza" src="../../../assets/images/alergenos/mostaza.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.sesamo" src="../../../assets/images/alergenos/sesamo.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.sulfito" src="../../../assets/images/alergenos/sulfito.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.altramuz" src="../../../assets/images/alergenos/altramuz.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.molusco" src="../../../assets/images/alergenos/molusco.png">
+
+
+                                <td class="text-right will_table will_precio" style="width: 20%;">
+                                    <i *ngIf="!plato.activo" class="fas fa-exclamation-circle" style="font-size:20px; color:red; opacity:0.6" ngbTooltip="No disponible" placement="left" [openDelay]="300" [closeDelay]="500"></i>
+
+                                    <span [ngClass]="{'will_tachado' : !plato.activo}">{{plato.precio}} €</span>
+                                </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="rss mt-5">
+        <!-- <p class="mb-2" style="font-size:16px;"  >Síguenos</p> -->
+        <div class="d-inline">
+            <a class="rss-icon" [href]="_userService.usuario.rss.facebook" *ngIf="_userService.usuario.rss.facebook"><i class="fa fa-facebook-official"></i></a>
+            <a class="rss-icon" [href]="_userService.usuario.rss.twitter" *ngIf="_userService.usuario.rss.twitter"><i class="fa fa-twitter"></i></a>
+            <a class="rss-icon" [href]="_userService.usuario.rss.instagram" *ngIf="_userService.usuario.rss.instagram"><i class="fa fa-instagram"></i></a>
+            <a class="rss-icon" [href]="_userService.usuario.rss.web" *ngIf="_userService.usuario.rss.web"><i class="fa fa-globe"></i></a>
+        </div>
+    </div>
+    <button class="button_scroll" *ngIf="isShow" (click)="gotoTop()"><i class="fas fa-chevron-circle-up"></i>
+
+</button>
+</div>

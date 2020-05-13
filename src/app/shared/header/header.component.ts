@@ -11,13 +11,16 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   navbarOpen = false;
   estaAutenticado=false;
+  uid:string;
 
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
   }
   constructor(public _authService:AuthService, private router:Router) {
     this.estaAutenticado=this._authService.estaAutenticado();
-
+  if(localStorage.getItem('lid')){
+    this.uid=localStorage.getItem('lid');
+  }
   }
 
   ngOnInit(): void {

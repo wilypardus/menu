@@ -1,17 +1,40 @@
-<div *ngFor="let menu of _menusService.menuUsr">
-    <div class="mt-5" *ngFor="let categoria of menu.categorias;let m = index">
-        <div class="text-center">
-            <h4 class="mb-3"> {{categoria.categoria}}</h4>
-        </div>
-        <div class="table-responsive">
-            <table class="table" style="width: 100%;border-top: 0px solid white!important;">
-                <tbody style="border-top: 0px solid white!important;">
-                    <tr *ngFor="let plato of categoria.platos;let p = index">
-                        <th (click)="noDisponible(m,p,plato.activo)" class="will_table" style="width: 60%;" [ngClass]="{'will_tachado' : !plato.activo}">{{plato.plato}}</th>
-                        <td class="text-right will_table will_precio" style="width: 20%;">{{plato.precio}} €</td>
-                    </tr>
-                </tbody>
-            </table>
+<app-header></app-header>
+<div class="container mt-5">
+    <div *ngFor="let menu of _menusService.menuUsr">
+        <div class="mt-5" *ngFor="let categoria of menu.categorias;let m = index">
+            <div class="text-center">
+                <h4 class="mb-3"> {{categoria.categoria}}</h4>
+            </div>
+            <div class="table-responsive">
+                <table class="table" style="width: 100%;border-top: 0px solid white!important;">
+                    <tbody style="border-top: 0px solid white!important;">
+                        <tr *ngFor="let plato of categoria.platos;let p = index">
+                            <th (click)="noDisponible(m,p,plato.activo)" class="will_table" style="width: 60%;" [ngClass]="{'will_tachado' : !plato.activo}">{{plato.plato}}
+                                <br class="mt-2">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.cereal" src="../../../assets/images/alergenos/cereal.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.crustaceo" src="../../../assets/images/alergenos/crustaceo.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.huevo" src="../../../assets/images/alergenos/huevo.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.cereal" src="../../../assets/images/alergenos/pescado.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.cacahuete" src="../../../assets/images/alergenos/cacahuete.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.soja" src="../../../assets/images/alergenos/soja.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.lacteo" src="../../../assets/images/alergenos/lacteo.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.frutoseco" src="../../../assets/images/alergenos/frutoseco.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.apio" src="../../../assets/images/alergenos/apio.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.mostaza" src="../../../assets/images/alergenos/mostaza.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.sesamo" src="../../../assets/images/alergenos/sesamo.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.sulfito" src="../../../assets/images/alergenos/sulfito.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.altramuz" src="../../../assets/images/alergenos/altramuz.png">
+                                <img class="mr-1 alergeno" *ngIf="plato.alergenos.molusco" src="../../../assets/images/alergenos/molusco.png">
+
+                            </th>
+
+                            <td class="text-right will_table will_precio" style="width: 20%;">
+                                <i *ngIf="!plato.activo" class="fas fa-exclamation-circle" style="font-size:20px; color:red; opacity:0.6" ngbTooltip="No disponible" placement="left" [openDelay]="300" [closeDelay]="500"></i> {{plato.precio}} €
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

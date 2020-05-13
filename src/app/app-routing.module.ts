@@ -14,23 +14,25 @@ import { CustomerMenuComponent } from './pages/customer-menu/customer-menu.compo
 import { AdminMenuComponent } from './pages/admin-menu/admin-menu.component';
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
 import { SetMenuComponent } from './pages/set-menu/set-menu.component';
+import { VistaMenuComponent } from './pages/vista-menu/vista-menu.component';
 
 
 
 const routes: Routes = [
-{ path: 'template', component: TemplateComponent },
-{ path: 'reactivo', component: ReactiveComponent },
-{ path: 'upload', component: UploadComponent },
+// { path: 'template', component: TemplateComponent },
+// { path: 'reactivo', component: ReactiveComponent },
+// { path: 'upload', component: UploadComponent },
 { path: 'menu/:id', component: MenuComponent, canActivate:[AuthGuard]},
-{ path: 'menu2/:id', component: SetMenuComponent, canActivate:[AuthGuard]},
+// { path: 'menu2/:id', component: SetMenuComponent, canActivate:[AuthGuard]},
 { path: 'user', component: UserSettingsComponent, canActivate:[AuthGuard]},
 // { path: 'menus', component: MenusComponent, canActivate:[AuthGuard]},
 { path: 'admin/:id', component: AdminMenuComponent, canActivate:[AuthGuard]},
 { path: 'menus', component: MenusFirebaseComponent, canActivate:[AuthGuard]},
 { path: 'login', component: LoginComponent},
 { path: 'register', component: RegisterComponent},
-{ path: 'pruebas', component: PruebasComponent},
+// { path: 'pruebas', component: PruebasComponent},
 { path: 'u/:id', component: CustomerMenuComponent},
+{ path: 'revisualización/:id', component: VistaMenuComponent, canActivate:[AuthGuard]},
 
 
 { path: '**', pathMatch: 'full', redirectTo: 'menus' }

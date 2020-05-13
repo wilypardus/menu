@@ -51,7 +51,7 @@ tabla-borde {
 }
 
 .will_tachado {
-    text-decoration: line-through!important;
+    /* text-decoration: line-through!important; */
     opacity: 0.5;
 }
 

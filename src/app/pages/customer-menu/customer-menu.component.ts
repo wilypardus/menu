@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { MenusService } from '../../services/menus.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user-service.service';
@@ -17,6 +17,8 @@ export class CustomerMenuComponent implements OnInit {
   usuarioMenu;
   isShow: boolean;
   topPosToStartShowing = 100;
+  fontSize = 14;
+  @ViewChild('para', { static: true }) para: ElementRef;
 
   @HostListener('window:scroll')
   checkScroll() {
@@ -39,7 +41,10 @@ export class CustomerMenuComponent implements OnInit {
   constructor(public _menusService:MenusService, private route:ActivatedRoute, public _userService:UserService) {
   this.id = this.route.snapshot.paramMap.get('id');
   this._menusService.cargarUsrMenu(this.id).subscribe();
-  this._userService.cargarUser(this.id).subscribe();
+  this._userService.cargarUser(this.id).subscribe(resp=>{
+    this.usuarioMenu=resp
+    console.log(resp);
+  });
 
    }
 
@@ -52,6 +57,14 @@ export class CustomerMenuComponent implements OnInit {
       left: 0,
       behavior: 'smooth'
     });
+  }
+
+  decrease(){
+    this.fontSize = (this.fontSize * 0.8);
+  }
+
+  increase(){
+    this.fontSize = (this.fontSize * 1.2);
   }
 
 

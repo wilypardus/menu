@@ -6,6 +6,7 @@ import { UploadService } from '../../services/upload.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -27,7 +28,9 @@ usuarioForm:FormGroup;
     public _userService:UserService,
     private fb: FormBuilder,
     public _upload:UploadService,
-    private storage:AngularFireStorage
+    private storage:AngularFireStorage,
+    config: NgbModalConfig,
+    private modalService: NgbModal
     ) {
 
       this.usuarioForm=this.fb.group({
@@ -35,7 +38,13 @@ usuarioForm:FormGroup;
         email:[''],
         img:[''],
         adminStatus:[''],
-        adminPwd:['']
+        adminPwd:[''],
+        rss:this.fb.group({
+          facebook:[''],
+          instagram:[''],
+          twitter:[''],
+          web:[''],
+        })
       });
 
       this.uid=localStorage.getItem('lid');
@@ -50,6 +59,10 @@ usuarioForm:FormGroup;
           this.usuarioForm.get('email').setValue(this.usuario.email);
           this.usuario.img=resp.img;
           this.usuarioForm.get('adminStatus').setValue(this.usuario.adminProtected.status);
+          this.usuarioForm.get('rss.facebook').setValue(this.usuario.rss.facebook);
+          this.usuarioForm.get('rss.instagram').setValue(this.usuario.rss.instagram);
+          this.usuarioForm.get('rss.twitter').setValue(this.usuario.rss.twitter);
+          this.usuarioForm.get('rss.web').setValue(this.usuario.rss.web);
         }
         )
 
@@ -92,6 +105,10 @@ usuarioForm:FormGroup;
     });
     })
     ).subscribe();
+  }
+
+  open(content) {
+    this.modalService.open(content);
   }
 
 }

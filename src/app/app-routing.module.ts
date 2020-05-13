@@ -13,6 +13,7 @@ import { MenusFirebaseComponent } from './pages/menus-firebase/menus-firebase.co
 import { CustomerMenuComponent } from './pages/customer-menu/customer-menu.component';
 import { AdminMenuComponent } from './pages/admin-menu/admin-menu.component';
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
+import { SetMenuComponent } from './pages/set-menu/set-menu.component';
 
 
 
@@ -21,6 +22,7 @@ const routes: Routes = [
 { path: 'reactivo', component: ReactiveComponent },
 { path: 'upload', component: UploadComponent },
 { path: 'menu/:id', component: MenuComponent, canActivate:[AuthGuard]},
+{ path: 'menu2/:id', component: SetMenuComponent, canActivate:[AuthGuard]},
 { path: 'user', component: UserSettingsComponent, canActivate:[AuthGuard]},
 // { path: 'menus', component: MenusComponent, canActivate:[AuthGuard]},
 { path: 'admin/:id', component: AdminMenuComponent, canActivate:[AuthGuard]},

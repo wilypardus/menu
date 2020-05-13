@@ -32,6 +32,7 @@ import { CustomerMenuComponent } from './pages/customer-menu/customer-menu.compo
 import { AdminMenuComponent } from './pages/admin-menu/admin-menu.component';
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
 import { UploadComponent } from './component/upload/upload.component';
+import { SetMenuComponent } from './pages/set-menu/set-menu.component';
 
 
 @NgModule({
@@ -68,6 +69,12 @@ import { UploadComponent } from './component/upload/upload.component';
 
 
     UploadComponent,
+
+
+
+
+
+    SetMenuComponent,
 
 
   ],

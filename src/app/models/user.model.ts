@@ -9,5 +9,11 @@ export class UserModel{
   adminProtected:{
     status:boolean,
     pwd:string;
-  };
+  }
+  rss?:{
+    facebook:string,
+    instagram:string,
+    web:string,
+    twitter:string,
+  }
 }

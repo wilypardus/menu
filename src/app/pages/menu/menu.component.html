@@ -103,40 +103,97 @@
                                                     <i class="fas fa-eraser"></i>
                                                   </button>
 
-                                                        <span class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</span>
+                                                        <span class="btn btn-lg btn-outline-primary" (click)="open(content)">Alérgenos</span>
                                                     </td>
 
 
 
                                                     <ng-template #content let-c="close" let-d="dismiss">
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+                                                            <h4 class="modal-title" id="modal-basic-title">Alérgenos</h4>
                                                             <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
                                                           <span aria-hidden="true">&times;</span>
                                                         </button>
                                                         </div>
                                                         <div class="modal-body">
                                                             <input formControlName="descripcion" class="form-control" type="text" placeholder="Descripción del plato" id="descripcion" name="descripcion" />
-                                                            <div>
-                                                                <h6>Alérgenos</h6>
-                                                                <input type="checkbox" formControlName="cereal">
-                                                                <input type="checkbox" formControlName="crustaceo">
-                                                                <input type="checkbox" formControlName="huevo">
-                                                                <input type="checkbox" formControlName="pescado">
-                                                                <input type="checkbox" formControlName="cacahuete">
-                                                                <input type="checkbox" formControlName="soja">
-                                                                <input type="checkbox" formControlName="lacteo">
-                                                                <input type="checkbox" formControlName="frutoseco">
-                                                                <input type="checkbox" formControlName="apio">
-                                                                <input type="checkbox" formControlName="mostaza">
-                                                                <input type="checkbox" formControlName="sesamo">
-                                                                <input type="checkbox" formControlName="sulfito">
-                                                                <input type="checkbox" formControlName="altramuz">
-                                                                <input type="checkbox" formControlName="molusco">
+                                                            <div formGroupName="alergenos">
+
+
+                                                                <label class="image-checkbox d-inline">
+                                                                  <input type="checkbox" style="display: none;" formControlName="cereal" style="display: none;" name="cereal">
+                                                                  <img class="mr-2 mt-1" src="../../../assets/images/alergenos/cereal.png" [ngClass]="{'alergeno-select':lines.get('alergenos.cereal').value,'alergeno-unselect':!lines.get('alergenos.cereal').value}"/>
+                                                              </label>
+
+                                                                <label class="image-checkbox d-inline">
+                                                                <input type="checkbox" style="display: none;" formControlName="crustaceo">
+                                                                  <img class="mr-2 mt-1" src="../../../assets/images/alergenos/crustaceo.png" [ngClass]="{'alergeno-select':lines.get('alergenos.crustaceo').value,'alergeno-unselect':!lines.get('alergenos.crustaceo').value}"/>
+                                                              </label>
+
+                                                                <label class="image-checkbox d-inline">
+                                                                <input type="checkbox" style="display: none;" formControlName="huevo">
+                                                                  <img class="mr-2 mt-1" src="../../../assets/images/alergenos/huevo.png" [ngClass]="{'alergeno-select':lines.get('alergenos.huevo').value,'alergeno-unselect':!lines.get('alergenos.huevo').value}"/>
+                                                              </label>
+
+                                                                <label class="image-checkbox d-inline">
+                                                                <input type="checkbox" style="display: none;" formControlName="pescado">
+                                                                  <img class="mr-2 mt-1" src="../../../assets/images/alergenos/pescado.png" [ngClass]="{'alergeno-select':lines.get('alergenos.pescado').value,'alergeno-unselect':!lines.get('alergenos.pescado').value}"/>
+                                                              </label>
+
+                                                                <label class="image-checkbox d-inline">
+                                                                <input type="checkbox" style="display: none;" formControlName="cacahuete">
+                                                                  <img class="mr-2 mt-1" src="../../../assets/images/alergenos/cacahuete.png" [ngClass]="{'alergeno-select':lines.get('alergenos.cacahuete').value,'alergeno-unselect':!lines.get('alergenos.cacahuete').value}"/>
+                                                              </label>
+
+                                                                <label class="image-checkbox d-inline">
+                                                                <input type="checkbox" style="display: none;" formControlName="soja">
+                                                                  <img class="mr-2 mt-1" src="../../../assets/images/alergenos/soja.png" [ngClass]="{'alergeno-select':lines.get('alergenos.soja').value,'alergeno-unselect':!lines.get('alergenos.soja').value}"/>
+                                                              </label>
+
+                                                                <label class="image-checkbox d-inline">
+                                                                <input type="checkbox" style="display: none;" formControlName="lacteo">
+                                                                  <img class="mr-2 mt-1" src="../../../assets/images/alergenos/lacteo.png" [ngClass]="{'alergeno-select':lines.get('alergenos.lacteo').value,'alergeno-unselect':!lines.get('alergenos.lacteo').value}"/>
+                                                              </label>
+
+                                                                <label class="image-checkbox d-inline">
+                                                                <input type="checkbox" style="display: none;" formControlName="frutoseco">
+                                                                <img class="mr-2 mt-1" src="../../../assets/images/alergenos/frutoseco.png" [ngClass]="{'alergeno-select':lines.get('alergenos.frutoseco').value,'alergeno-unselect':!lines.get('alergenos.frutoseco').value}"/>
+                                                              </label>
+
+                                                                <label class="image-checkbox d-inline">
+                                                                <input type="checkbox" style="display: none;" formControlName="apio">
+                                                                <img class="mr-2 mt-1" src="../../../assets/images/alergenos/apio.png" [ngClass]="{'alergeno-select':lines.get('alergenos.apio').value,'alergeno-unselect':!lines.get('alergenos.apio').value}" />
+                                                                </label>
+
+                                                                <label class="image-checkbox d-inline">
+                                                                <input type="checkbox" style="display: none;" formControlName="mostaza">
+                                                                  <img class="mr-2 mt-1" src="../../../assets/images/alergenos/mostaza.png" [ngClass]="{'alergeno-select':lines.get('alergenos.mostaza').value,'alergeno-unselect':!lines.get('alergenos.mostaza').value}"/>
+                                                              </label>
+
+                                                                <label class="image-checkbox d-inline">
+                                                                <input type="checkbox" style="display: none;" formControlName="sesamo">
+                                                                  <img class="mr-2 mt-1" src="../../../assets/images/alergenos/sesamo.png" [ngClass]="{'alergeno-select':lines.get('alergenos.sesamo').value,'alergeno-unselect':!lines.get('alergenos.sesamo').value}"/>
+                                                              </label>
+
+                                                                <label class="image-checkbox d-inline">
+                                                                <input type="checkbox" style="display: none;" formControlName="sulfito">
+                                                                  <img class="mr-2 mt-1" src="../../../assets/images/alergenos/sulfito.png" [ngClass]="{'alergeno-select':lines.get('alergenos.sulfito').value,'alergeno-unselect':!lines.get('alergenos.sulfito').value}"/>
+                                                              </label>
+
+                                                                <label class="image-checkbox d-inline ">
+                                                                <input type="checkbox" style="display: none;" formControlName="altramuz">
+                                                                <img class="mr-2 mt-1" src="../../../assets/images/alergenos/altramuz.png" [ngClass]="{'alergeno-select':lines.get('alergenos.altramuz').value,'alergeno-unselect':!lines.get('alergenos.altramuz').value}"/>
+                                                              </label>
+
+                                                                <label class="image-checkbox d-inline ">
+                                                                <input type="checkbox" style="display: none;" formControlName="molusco">
+                                                                <img class="mr-2 mt-1" src="../../../assets/images/alergenos/molusco.png" [ngClass]="{'alergeno-select':lines.get('alergenos.molusco').value,'alergeno-unselect':!lines.get('alergenos.molusco').value}"/>
+                                                              </label>
+
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
+                                                            <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Continuar</button>
                                                         </div>
                                                     </ng-template>
                                                 </tr>

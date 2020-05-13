@@ -9,11 +9,11 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-menu',
-  templateUrl: './menu.component.html',
+  templateUrl: './set-menu.component.html',
   styles: [
   ]
 })
-export class MenuComponent implements OnInit {
+export class SetMenuComponent implements OnInit {
   upLoadPercent: Observable<number>;
   urlImage: string;
   uid:string;
@@ -32,10 +32,6 @@ export class MenuComponent implements OnInit {
             descripcion:'',
             precio:'',
             activo:'',
-            cereal:'',
-            crustaceo:'',
-            huevo:'',
-            pescado:'',
             alergenos:[
               {
                 cereal:'',
@@ -214,6 +210,7 @@ ngOnInit():void{
   }
 
   setPlatos(x) {
+
     const arr = new FormArray([]);
     x.platos.forEach(y => {
       arr.push(this.fb.group({
@@ -237,11 +234,12 @@ ngOnInit():void{
           altramuz:y.alergenos.altramuz,
           molusco:y.alergenos.molusco,
         })
-
-      }));
+     }));
     });
     return arr;
   }
+
+
 
   actualizarEstado(id,estado){
     this._menusService.actualizarEstado(id,estado).then((resp)=>{

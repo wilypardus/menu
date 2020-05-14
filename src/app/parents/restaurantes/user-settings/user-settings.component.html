@@ -1,0 +1,76 @@
+<form [formGroup]="usuarioForm" (ngSubmit)="actualizarUsrSettings()" #f="ngForm">
+
+    <label for="name">Nombre</label>
+    <input type="text" id="nombre" class="form-control" placeholder="Nombre de la carta..." name="nombre" formControlName="nombre" required>
+    <label for="email">Email</label>
+    <input type="text" id="email" class="form-control" placeholder="Nombre de la carta..." name="email" formControlName="email" disabled>
+    <label for="adminStatus">Protección admin</label>
+    <div class="inline">
+        <input type="checkbox" id="adminStatus" class="form-control" placeholder="Nombre de la carta..." name="adminStatus" formControlName="adminStatus">
+        <input type="password" *ngIf="this.usuarioForm.value.adminStatus" id="adminPwd" class="form-control" placeholder="Nombre de la carta..." name="adminPwd" formControlName="adminPwd">
+        <img [src]="usuario.img" width="100%">
+        <input type="file" (change)="onUploadLogo($event)" accept=".png, .jpg, .jpeg">
+        <span class="btn btn-lg btn-outline-primary" (click)="open(content)">Redes Sociales</span>
+
+        <ng-template #content let-c="close" let-d="dismiss">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Redes Sociales</h4>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+
+
+
+
+
+                <div formGroupName="rss">
+
+                    <div class="col-auto">
+                        <label class="sr-only" for="facebook">facebook</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-facebook-official"></i></div>
+                            </div>
+                            <input type="text" class="form-control" for="facebook" formControlName="facebook" placeholder="https://www.facebook.com/...">
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <label class="sr-only" for="instagram">instagram</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-instagram"></i></div>
+                            </div>
+                            <input type="text" class="form-control" for="instagram" formControlName="instagram" placeholder="https://www.instagram.com/...">
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <label class="sr-only" for="twitter">twitter</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-twitter"></i></div>
+                            </div>
+                            <input type="text" class="form-control" for="twitter" formControlName="twitter" placeholder="https://www.twitter.com/...">
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <label class="sr-only" for="web">web</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-globe"></i></div>
+                            </div>
+                            <input type="text" class="form-control" for="web" formControlName="web" placeholder="https://www.your-web.com">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Continuar</button>
+            </div>
+        </ng-template>
+        <button type="submit" class="btn btn-outline-success">Actualizar datos</button>
+    </div>
+</form>
+<!-- {{usuarioForm.value|json}} -->

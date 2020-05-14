@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user-service.service';
-import { UserModel } from '../../models/user.model';
+import { UserService } from '../../../services/user-service.service';
+import { UserModel } from '../../../models/user.model';
 import { FormBuilder,FormGroup,FormArray } from '@angular/forms';
-import { UploadService } from '../../services/upload.service';
+import { UploadService } from '../../../services/upload.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs';

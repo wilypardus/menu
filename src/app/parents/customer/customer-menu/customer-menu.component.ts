@@ -1,22 +1,24 @@
-import { Component, OnInit, HostListener } from '@angular/core';
-import { MenusService } from '../../services/menus.service';
+import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { MenusService } from 'src/app/services/menus.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user-service.service';
 
-import { Location } from '@angular/common';
+
 
 @Component({
-  selector: 'app-vista-menu',
-  templateUrl: './vista-menu.component.html',
+  selector: 'app-customer-menu',
+  templateUrl: './customer-menu.component.html',
   styles: [
   ]
 })
-export class VistaMenuComponent implements OnInit {
+export class CustomerMenuComponent implements OnInit {
   id:string;
   menuUsr;
   usuarioMenu;
   isShow: boolean;
   topPosToStartShowing = 100;
+  fontSize = 14;
+  @ViewChild('para', { static: true }) para: ElementRef;
 
   @HostListener('window:scroll')
   checkScroll() {
@@ -26,7 +28,7 @@ export class VistaMenuComponent implements OnInit {
 
     const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
-    console.log('[scroll]', scrollPosition);
+    //console.log('[scroll]', scrollPosition);
 
     if (scrollPosition >= this.topPosToStartShowing) {
       this.isShow = true;
@@ -36,8 +38,9 @@ export class VistaMenuComponent implements OnInit {
   }
 
 
-  constructor(public _menusService:MenusService, private route:ActivatedRoute, public _userService:UserService,private location: Location) {
-  this.id = this.route.snapshot.paramMap.get('id');
+  constructor(public _menusService:MenusService, private route:ActivatedRoute, public _userService:UserService) {
+  this.id = this.route.snapshot.paramMap.get('cartaId');
+  console.log(this.id);
   this._menusService.cargarUsrMenu(this.id).subscribe();
   this._userService.cargarUser(this.id).subscribe(resp=>{
     this.usuarioMenu=resp
@@ -57,8 +60,14 @@ export class VistaMenuComponent implements OnInit {
     });
   }
 
-
-  goForward() {
-    this.location.forward();
+  decrease(){
+    this.fontSize = (this.fontSize * 0.8);
   }
+
+  increase(){
+    this.fontSize = (this.fontSize * 1.2);
+  }
+
+
+
 }

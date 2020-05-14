@@ -35,6 +35,8 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { UploadComponent } from '../../component/upload/upload.component';
 // import { SetMenuComponent } from './pages/set-menu/set-menu.component';
 import { RestaurantesComponent } from './restaurantes.component';
+import { QRCodeModule } from 'angularx-qrcode';
+
 
 
 
@@ -93,6 +95,7 @@ import { RestaurantesComponent } from './restaurantes.component';
     //AngularFireAnalyticsModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
+    QRCodeModule
 
 
   ],

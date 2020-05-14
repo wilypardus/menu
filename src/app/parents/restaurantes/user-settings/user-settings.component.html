@@ -71,6 +71,8 @@
             </div>
         </ng-template>
         <button type="submit" class="btn btn-outline-success">Actualizar datos</button>
+
+        <qrcode [qrdata]="urlCarta" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
     </div>
 </form>
 <!-- {{usuarioForm.value|json}} -->

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { UserService } from '../../../services/user-service.service';
 import { UserModel } from '../../../models/user.model';
 import { FormBuilder,FormGroup,FormArray } from '@angular/forms';
@@ -7,6 +7,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DOCUMENT } from '@angular/common';
 
 
 
@@ -21,17 +22,19 @@ usuario:UserModel;
 uid;
 urlImage:string;
 upLoadPercent: Observable<number>;
-
+urlCarta:string;
 
 usuarioForm:FormGroup;
-  constructor(
-    public _userService:UserService,
-    private fb: FormBuilder,
-    public _upload:UploadService,
-    private storage:AngularFireStorage,
-    config: NgbModalConfig,
-    private modalService: NgbModal
+constructor(
+  public _userService:UserService,
+  private fb: FormBuilder,
+  public _upload:UploadService,
+  private storage:AngularFireStorage,
+  config: NgbModalConfig,
+  private modalService: NgbModal,
+  @Inject(DOCUMENT) document: any,
     ) {
+
 
       this.usuarioForm=this.fb.group({
         nombre:[''],
@@ -54,6 +57,10 @@ usuarioForm:FormGroup;
           console.log(resp);
           this.usuario=resp
           localStorage.setItem('enventId',resp.eventId);
+          this.urlCarta=document.location.host+"/#/carta/"+this.usuario.uid;
+          console.log(this.urlCarta);
+
+
           //Seteo de Datos
           this.usuarioForm.get('nombre').setValue(this.usuario.nombre);
           this.usuarioForm.get('email').setValue(this.usuario.email);

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
-import { MenusService } from '../../services/menus.service';
+import { MenusService } from '../../../services/menus.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
@@ -32,10 +32,7 @@ export class MenuComponent implements OnInit {
             descripcion:'',
             precio:'',
             activo:'',
-            cereal:'',
-            crustaceo:'',
-            huevo:'',
-            pescado:'',
+            select:'',
             alergenos:[
               {
                 cereal:'',
@@ -180,6 +177,7 @@ ngOnInit():void{
         descripcion: [''],
         precio: [''],
         activo:[true],
+        select:[false],
         alergenos:this.fb.group({
           cereal:[''],
           crustaceo:[''],
@@ -221,6 +219,7 @@ ngOnInit():void{
         descripcion: y.descripcion,
         precio: y.precio,
         activo: y.activo,
+        select: false,
         alergenos:this.fb.group({
           cereal:y.alergenos.cereal,
           crustaceo:y.alergenos.crustaceo,

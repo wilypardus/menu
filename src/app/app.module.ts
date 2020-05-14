@@ -12,27 +12,30 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
 
-import { AppRoutingModule } from './app-routing.module';
+import { APP_ROUTES } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TemplateComponent } from './pages/template/template.component';
 import { ReactiveComponent } from './pages/reactive/reactive.component';
-import { MenuComponent } from './pages/menu/menu.component';
+import { MenuComponent } from './parents/restaurantes/menu/menu.component';
 
 import { MenusComponent } from './pages/menus/menus.component';
-import { VistaMenuComponent } from './pages/vista-menu/vista-menu.component';
+import { VistaMenuComponent } from './parents/restaurantes/vista-menu/vista-menu.component';
 import { LoginComponent } from './auth/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from './auth/register.component';
-import { HeaderComponent } from './shared/header/header.component';
+
 import { PruebasComponent } from './pruebas/pruebas.component';
 import { ChatComponent } from './component/chat/chat.component';
 import { ChatService } from './services/chat.service';
-import { MenusFirebaseComponent } from './pages/menus-firebase/menus-firebase.component';
-import { CustomerMenuComponent } from './pages/customer-menu/customer-menu.component';
-import { AdminMenuComponent } from './pages/admin-menu/admin-menu.component';
-import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
+import { MenusFirebaseComponent } from './parents/restaurantes/menus-firebase/menus-firebase.component';
+import { CustomerMenuComponent } from './parents/customer/customer-menu/customer-menu.component';
+import { AdminMenuComponent } from './parents/restaurantes/admin-menu/admin-menu.component';
+import { UserSettingsComponent } from './parents/restaurantes/user-settings/user-settings.component';
 import { UploadComponent } from './component/upload/upload.component';
 import { SetMenuComponent } from './pages/set-menu/set-menu.component';
+import { RestaurantesModule } from './parents/restaurantes/restaurantes.module';
+import { CustomerModule } from './parents/customer/customer.module';
+
 
 
 @NgModule({
@@ -40,35 +43,35 @@ import { SetMenuComponent } from './pages/set-menu/set-menu.component';
     AppComponent,
     TemplateComponent,
     ReactiveComponent,
-    MenuComponent,
+    // MenuComponent,
 
-    MenusComponent,
+    // MenusComponent,
 
-    VistaMenuComponent,
+    // VistaMenuComponent,
 
     LoginComponent,
 
     RegisterComponent,
 
-    HeaderComponent,
 
-    PruebasComponent,
 
-    ChatComponent,
+    // PruebasComponent,
 
-    MenusFirebaseComponent,
+    // ChatComponent,
 
-    CustomerMenuComponent,
-
-    AdminMenuComponent,
-
-    UserSettingsComponent,
+    // MenusFirebaseComponent,
 
 
 
+    // AdminMenuComponent,
+
+    // UserSettingsComponent,
 
 
-    UploadComponent,
+
+
+
+    // UploadComponent,
 
 
 
@@ -80,7 +83,7 @@ import { SetMenuComponent } from './pages/set-menu/set-menu.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    APP_ROUTES,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
@@ -88,7 +91,10 @@ import { SetMenuComponent } from './pages/set-menu/set-menu.component';
     AngularFireModule.initializeApp(environment.firebase),
     //AngularFireAnalyticsModule,
     AngularFirestoreModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    RestaurantesModule,
+    CustomerModule
+
 
   ],
   providers: [ChatService],

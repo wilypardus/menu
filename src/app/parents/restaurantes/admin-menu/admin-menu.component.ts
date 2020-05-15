@@ -26,10 +26,10 @@ export class AdminMenuComponent implements OnInit {
   this._menusService.cargarSugerenciasAdmin(this.id).subscribe(
     resp=>{
       if(resp.length!=0){
-        console.log('sugerencias',resp);
+        // console.log('sugerencias',resp);
         this.sugerenciasUsr=resp.categorias[0].platos
         this.menuSugerencias=resp
-        console.log("menu Sugerencias",this.menuSugerencias);
+        // console.log("menu Sugerencias",this.menuSugerencias);
         // this.sugerenciasId=resp.id
       }
     }
@@ -82,15 +82,15 @@ export class AdminMenuComponent implements OnInit {
   }
 
   ocultar(p,oculto){
-    console.log("menu",this.menuSugerencias);
-    console.log("plato",p);
+    // console.log("menu",this.menuSugerencias);
+    // console.log("plato",p);
     const plato=this.menuSugerencias.categorias[0].platos[p]
     plato.oculto=!oculto;
-    console.log('Id menu',this.menuSugerencias.id);
-    console.log("Cambiar estado plato",this.sugerenciasUsr);
-    console.log("A guardar",this.menuSugerencias);
+    // console.log('Id menu',this.menuSugerencias.id);
+    // console.log("Cambiar estado plato",this.sugerenciasUsr);
+    // console.log("A guardar",this.menuSugerencias);
       this._menusService.actualizarMenu(this.menuSugerencias,this.menuSugerencias.id)
-    if(estado){
+    if(oculto){
       this.toastr.warning('Plato marcadado como no disponible!')
     }else{
       this.toastr.success('Plato disponible!')

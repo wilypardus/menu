@@ -47,7 +47,7 @@ export class CustomerMenuComponent implements OnInit {
 
 
   this.id = this.route.snapshot.paramMap.get('cartaId');
-  console.log(this.id);
+  // console.log(this.id);
   this._menusService.cargarUsrMenu(this.id).subscribe();
   this._userService.cargarUser(this.id).subscribe(resp=>{
     // console.log(resp);

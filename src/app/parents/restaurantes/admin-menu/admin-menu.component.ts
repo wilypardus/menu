@@ -21,7 +21,7 @@ export class AdminMenuComponent implements OnInit {
 
 
     this.menuUsr=resp
-    console.log(this.menuUsr);
+    // console.log(this.menuUsr);
   });
 
 
@@ -44,7 +44,7 @@ export class AdminMenuComponent implements OnInit {
     }else{
       this.toastr.success('Plato disponible!')
     }
-    console.log(this.menuUsr);
+    // console.log(this.menuUsr);
 
   }
 }

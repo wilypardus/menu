@@ -9,6 +9,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import * as firebase from 'firebase';
 import {User} from 'firebase';
+import { Router } from '@angular/router';
+
 
 
 
@@ -43,7 +45,12 @@ export class AuthService {
 
 
 
-  constructor(private http:HttpClient,public _userService:UserService, private afAuth:AngularFireAuth) {
+  constructor(
+    private http:HttpClient,
+    public _userService:UserService,
+    private afAuth:AngularFireAuth,
+    private router:Router
+    ) {
 this.userData=afAuth.authState;
 
     this.leerToken();
@@ -108,7 +115,9 @@ this.userData=afAuth.authState;
       // console.log(resp);
       const uid=resp.user.uid
       localStorage.setItem('lid',uid)
-      // this._userService.crearUsrSettings(this.usuarioSttTemp);
+      this.usuarioSttTemp.email=resp.user.email;
+      this.usuarioSttTemp.nombre=resp.user.displayName;
+      this._userService.crearUsrSettings(this.usuarioSttTemp);
     })
     .catch(err=>{
       console.log(err);
@@ -186,17 +195,51 @@ estaAutenticado():boolean {
 
 
   // Autenticación con Facebook
-authWithFacebook(): Promise<firebase.auth.UserCredential> {
+authWithFacebook(): any {
   const provider: firebase.auth.FacebookAuthProvider = new firebase.auth.FacebookAuthProvider();
   provider.addScope('user_birthday');
-  return this.afAuth.signInWithPopup(provider);
+  this.afAuth.signInWithPopup(provider).then(resp=>{;
+  const uid=resp.user.uid
+  localStorage.setItem('lid',uid)
+  const newUser=resp.additionalUserInfo.isNewUser
+  if(newUser){
+    this.usuarioSttTemp.uid=uid
+    this.usuarioSttTemp.email=resp.user.email;
+    this.usuarioSttTemp.nombre=resp.user.displayName;
+    this.usuarioSttTemp.img=resp.user.photoURL;
+
+    console.log(resp);
+      this._userService.crearUsrSettings(this.usuarioSttTemp);
+      return this.usuarioSttTemp
+  }
+  this.router.navigateByUrl('/menus')
+  return this.usuarioSttTemp
+
+});
   }
 
   // Autenticación con Google
-  authWithGoogle(): Promise<firebase.auth.UserCredential> {
+  authWithGoogle(): any {
   const provider: firebase.auth.GoogleAuthProvider = new firebase.auth.GoogleAuthProvider();
        provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-  return this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(resp=>{
+    const uid=resp.user.uid
+    localStorage.setItem('lid',uid)
+    const newUser=resp.additionalUserInfo.isNewUser
+    if(newUser){
+      this.usuarioSttTemp.uid=uid
+      this.usuarioSttTemp.email=resp.user.email;
+      this.usuarioSttTemp.nombre=resp.user.displayName;
+      this.usuarioSttTemp.img=resp.user.photoURL;
+
+      console.log(resp);
+        this._userService.crearUsrSettings(this.usuarioSttTemp);
+        return this.usuarioSttTemp
+    }
+    this.router.navigateByUrl('/menus')
+    return this.usuarioSttTemp
+
+  });
   }
 
 }

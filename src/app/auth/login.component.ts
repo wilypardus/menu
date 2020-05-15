@@ -41,7 +41,7 @@ if(localStorage.getItem('email')){
 
     googleAuth(){
       this._auth.authWithGoogle().then(
-        resp=>{console.error(resp)}
+        this.router.navigateByUrl('/menus')
       )
       .catch(err=>console.log(err))
     }

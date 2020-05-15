@@ -11,9 +11,9 @@ export class UserModel{
     pwd:string;
   }
   rss?:{
-    facebook:string,
-    instagram:string,
-    web:string,
-    twitter:string,
+    facebook?:string,
+    instagram?:string,
+    web?:string,
+    twitter?:string,
   }
 }

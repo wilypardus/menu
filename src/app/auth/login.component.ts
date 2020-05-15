@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   usuario: UserLoginModel = new UserLoginModel();
   recordarme=false;
   constructor(
-    private _auth: AuthService,
+    public _auth: AuthService,
     private router:Router,
     config: NgbModalConfig, private modalService: NgbModal,
     ) { }

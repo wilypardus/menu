@@ -207,9 +207,12 @@ authWithFacebook(): any {
     this.usuarioSttTemp.email=resp.user.email;
     this.usuarioSttTemp.nombre=resp.user.displayName;
     this.usuarioSttTemp.img=resp.user.photoURL;
+    this.usuarioSttTemp.rss={};
 
     console.log(resp);
       this._userService.crearUsrSettings(this.usuarioSttTemp);
+    this.router.navigateByUrl('/menus')
+
       return this.usuarioSttTemp
   }
   this.router.navigateByUrl('/menus')
@@ -231,9 +234,10 @@ authWithFacebook(): any {
       this.usuarioSttTemp.email=resp.user.email;
       this.usuarioSttTemp.nombre=resp.user.displayName;
       this.usuarioSttTemp.img=resp.user.photoURL;
-
-      console.log(resp);
+      this.usuarioSttTemp.rss={};
+      // console.log(resp);
         this._userService.crearUsrSettings(this.usuarioSttTemp);
+         this.router.navigateByUrl('/menus')
         return this.usuarioSttTemp
     }
     this.router.navigateByUrl('/menus')

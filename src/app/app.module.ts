@@ -88,6 +88,10 @@ import { RecoveryComponent } from './auth/recovery.component';
     RecoveryComponent,
 
 
+
+
+
+
   ],
   imports: [
     BrowserModule,

@@ -75,6 +75,7 @@ export class MenuComponent implements OnInit {
       id: [''],
       uid:[this.uid],
       name: [''],
+      tipo:['menu'],
       created:[new Date()],
       modified:[''],
       activo:[false],

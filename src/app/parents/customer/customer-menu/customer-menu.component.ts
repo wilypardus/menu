@@ -2,6 +2,8 @@ import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular
 import { MenusService } from 'src/app/services/menus.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user-service.service';
+import { UserModel } from '../../../models/user.model';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -14,10 +16,13 @@ import { UserService } from 'src/app/services/user-service.service';
 export class CustomerMenuComponent implements OnInit {
   id:string;
   menuUsr;
-  usuarioMenu;
+  usuarioMenu:UserModel;
+  usuarioSugerencias;
   isShow: boolean;
   topPosToStartShowing = 100;
   fontSize = 14;
+  sugerencias:any;
+  closeResult = '';
   @ViewChild('para', { static: true }) para: ElementRef;
 
   @HostListener('window:scroll')
@@ -38,18 +43,30 @@ export class CustomerMenuComponent implements OnInit {
   }
 
 
-  constructor(public _menusService:MenusService, private route:ActivatedRoute, public _userService:UserService) {
+  constructor(public _menusService:MenusService, private route:ActivatedRoute, public _userService:UserService,private modalService: NgbModal) {
+
+
   this.id = this.route.snapshot.paramMap.get('cartaId');
   console.log(this.id);
   this._menusService.cargarUsrMenu(this.id).subscribe();
   this._userService.cargarUser(this.id).subscribe(resp=>{
+    // console.log(resp);
     this.usuarioMenu=resp
-    console.log(resp);
   });
+  this._menusService.cargarSugerencias(this.id).subscribe(
+    resp=>{
+      this.sugerencias=resp
+
+    }
+  );
+  // console.log(this._menuService.sugerencias);
 
    }
 
+
   ngOnInit(): void {
+
+
   }
   // TODO: Cross browsing
   gotoTop() {
@@ -68,6 +85,21 @@ export class CustomerMenuComponent implements OnInit {
     this.fontSize = (this.fontSize * 1.2);
   }
 
-
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
 
 }

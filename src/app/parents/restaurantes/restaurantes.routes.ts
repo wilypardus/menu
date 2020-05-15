@@ -7,6 +7,7 @@ import { AdminMenuComponent } from 'src/app/parents/restaurantes/admin-menu/admi
 import { VistaMenuComponent } from 'src/app/parents/restaurantes/vista-menu/vista-menu.component';
 import { RestaurantesComponent } from './restaurantes.component';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
+import { SugerenciasComponent } from './menu/sugerencias.component';
 
 
 
@@ -20,6 +21,7 @@ const restaurantesRoutes: Routes = [
 { path: 'user', component: UserSettingsComponent, canActivate:[AngularFireAuthGuard]},
 { path: 'admin/:id', component: AdminMenuComponent, canActivate:[AngularFireAuthGuard]},
 { path: 'menus', component: MenusFirebaseComponent, canActivate:[AngularFireAuthGuard]},
+{ path: 'sugerencias/:id', component: SugerenciasComponent, canActivate:[AngularFireAuthGuard]},
 { path: 'preview/:id', component: VistaMenuComponent, canActivate:[AngularFireAuthGuard]},
 
 

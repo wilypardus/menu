@@ -37,6 +37,8 @@ import { UploadComponent } from '../../component/upload/upload.component';
 import { RestaurantesComponent } from './restaurantes.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { PipesModule } from '../../pipes/pipes.module';
+import { SugerenciasComponent } from './menu/sugerencias.component';
+import { SugerenciasFirebaseComponent } from './menus-firebase/sugerencias-firebase.component';
 
 
 
@@ -74,7 +76,9 @@ import { PipesModule } from '../../pipes/pipes.module';
 
 
     UploadComponent,
-    RestaurantesComponent
+    RestaurantesComponent,
+    SugerenciasComponent,
+    SugerenciasFirebaseComponent
 
 
 

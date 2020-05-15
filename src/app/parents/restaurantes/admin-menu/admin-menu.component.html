@@ -1,3 +1,60 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Carta sugerencias</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        <div class="table-responsive mt-5">
+            <table class="table" style="width: 100%;border-top: 0px solid white!important;">
+                <tbody style="border-top: 0px solid white!important;">
+                    <tr *ngFor="let plato of sugerenciasUsr;let p = index">
+                        <th> <button class="btn  mr-2" (click)="ocultar(p,plato.oculto)" [ngClass]="{'btn-dark' : plato.oculto}"><i class="fas fa-eye-slash" *ngIf="plato.oculto"></i><i class="far fa-eye" *ngIf="!plato.oculto"></i></button>
+                        </th>
+                        <th class="will_table" style="width: 100%;" [ngClass]="{'will_tachado' : !plato.activo}" (click)="SugerenciaNoDisponible(p,plato.activo)">
+                            <p>{{plato.plato}}</p>
+                            <br class="mt-2">
+                            <img class="mr-1 alergeno" *ngIf="plato.alergenos.cereal" src="../../../assets/images/alergenos/cereal.png">
+                            <img class="mr-1 alergeno" *ngIf="plato.alergenos.crustaceo" src="../../../assets/images/alergenos/crustaceo.png">
+                            <img class="mr-1 alergeno" *ngIf="plato.alergenos.huevo" src="../../../assets/images/alergenos/huevo.png">
+                            <img class="mr-1 alergeno" *ngIf="plato.alergenos.cereal" src="../../../assets/images/alergenos/pescado.png">
+                            <img class="mr-1 alergeno" *ngIf="plato.alergenos.cacahuete" src="../../../assets/images/alergenos/cacahuete.png">
+                            <img class="mr-1 alergeno" *ngIf="plato.alergenos.soja" src="../../../assets/images/alergenos/soja.png">
+                            <img class="mr-1 alergeno" *ngIf="plato.alergenos.lacteo" src="../../../assets/images/alergenos/lacteo.png">
+                            <img class="mr-1 alergeno" *ngIf="plato.alergenos.frutoseco" src="../../../assets/images/alergenos/frutoseco.png">
+                            <img class="mr-1 alergeno" *ngIf="plato.alergenos.apio" src="../../../assets/images/alergenos/apio.png">
+                            <img class="mr-1 alergeno" *ngIf="plato.alergenos.mostaza" src="../../../assets/images/alergenos/mostaza.png">
+                            <img class="mr-1 alergeno" *ngIf="plato.alergenos.sesamo" src="../../../assets/images/alergenos/sesamo.png">
+                            <img class="mr-1 alergeno" *ngIf="plato.alergenos.sulfito" src="../../../assets/images/alergenos/sulfito.png">
+                            <img class="mr-1 alergeno" *ngIf="plato.alergenos.altramuz" src="../../../assets/images/alergenos/altramuz.png">
+                            <img class="mr-1 alergeno" *ngIf="plato.alergenos.molusco" src="../../../assets/images/alergenos/molusco.png">
+
+
+                            <td class="text-right will_table will_precio" style="width: 20%;">
+                                <i *ngIf="!plato.activo" class="fas fa-exclamation-circle" style="font-size:20px; color:red; opacity:0.6" ngbTooltip="No disponible" placement="left" [openDelay]="300" [closeDelay]="500"></i>
+
+                                <span [ngClass]="{'will_tachado' : !plato.activo}" (click)="SugerenciaNoDisponible(p,plato.activo)">{{plato.precio}} €</span>
+                            </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    </div>
+</ng-template>
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Carta sugerencias</button>
+
+
+
+
+
+
+
+
 <div *ngFor="let menu of _menusService.menuUsr">
     <div class="mt-5" *ngFor="let categoria of menu.categorias;let m = index">
         <div class="text-center">

@@ -15,6 +15,8 @@ import { environment } from '../../../environments/environment';
 import { CustomerMenuComponent } from './customer-menu/customer-menu.component';
 import { CustomerComponent } from './customer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CustomerSugerenciasComponent } from './customer-menu/customer-sugerencias.component';
+
 
 
 
@@ -23,6 +25,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   declarations: [
     CustomerComponent,
     CustomerMenuComponent,
+    CustomerSugerenciasComponent
   ],
   imports: [
     BrowserModule,

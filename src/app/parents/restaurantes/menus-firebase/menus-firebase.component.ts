@@ -13,10 +13,22 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class MenusFirebaseComponent implements OnInit {
 uid:string
+sugerencias:any;
+sugerenciaId='no';
   constructor(public _menusService:MenusService,private router:Router,private toastr: ToastrService) {
     this.uid=localStorage.getItem('lid')
     if(this.uid==null){  this.uid='esteuidestavacio'  }
     this._menusService.cargarMenus(this.uid).subscribe();
+    this._menusService.cargarSugerenciasListado(this.uid).subscribe(resp=>{
+      console.log(resp);
+      if(resp.length!=0){
+
+        this.sugerencias=resp;
+        this.sugerenciaId=this.sugerencias.id;
+        console.log('Sugerencias',this.sugerenciaId);
+
+      }
+    });
    }
 
   ngOnInit(): void {
@@ -62,6 +74,18 @@ uid:string
       this.router.navigateByUrl(url)
 
     }
+    putSugerencia(eventId){
+      const url= `/sugerencias/${eventId}`;
+      this.router.navigateByUrl(url)
+
+    }
+    crearSugerencia(uid){
+
+      const url= `/sugerencias/${uid}`;
+      this.router.navigateByUrl(url)
+
+    }
+
     actualizarEstado(id,estado){
       this._menusService.actualizarEstado(id,estado).then((resp)=>{
 

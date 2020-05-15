@@ -13,6 +13,8 @@ export class MenusService {
 private menusCollection: AngularFirestoreCollection<any>;
 private menuDoc: AngularFirestoreDocument<any>;
 public menus:any[]=[];
+public sugerencias:any[]=[];
+public sugerenciasAdmin:any[]=[];
 private url = 'https://menu-app-bd.firebaseio.com';
 menuId;
 public menuUsr:any[]=[];
@@ -27,7 +29,7 @@ constructor(
 
    cargarUsrMenu(id){
 
-    this.menusCollection = this.afs.collection<any>('menus', ref => ref.where('uid', '==', id).where('activo','==',true).limit(1));
+    this.menusCollection = this.afs.collection<any>('menus', ref => ref.where('uid', '==', id).where('activo','==',true).where('tipo','==','menu').limit(1));
     return this.menusCollection.valueChanges().pipe(
       map(resp=>{
         return this.menuUsr=resp
@@ -42,11 +44,38 @@ constructor(
   // return this.menuDoc.update({'plato': !estado});
   // }
   cargarMenus(uid){
-    this.menusCollection = this.afs.collection<any>('menus', ref => ref.where('uid', '==', uid));
+    this.menusCollection = this.afs.collection<any>('menus', ref => ref.where('uid', '==', uid).where('tipo','==','menu'));
     return this.menusCollection.valueChanges({ idField: 'eventId' }).pipe(
       map(resp=>{
         //console.log("Menus",resp);
         this.menus=resp
+      })
+    )
+  }
+  cargarSugerencias(uid){
+    this.menusCollection = this.afs.collection<any>('menus', ref => ref.where('uid', '==', uid).where('tipo','==','sugerencias').where('activo','==',true).limit(1));
+    return this.menusCollection.valueChanges().pipe(
+      map(resp=>{
+        console.log("Sugerencias Servicio s",resp[0].categorias[0].platos);
+        return this.sugerencias=resp[0].categorias[0].platos
+      })
+    )
+  }
+  cargarSugerenciasListado(uid){
+    this.menusCollection = this.afs.collection<any>('menus', ref => ref.where('uid', '==', uid).where('tipo','==','sugerencias').limit(1));
+    return this.menusCollection.valueChanges().pipe(
+      map(resp=>{
+        console.log("Sugerencias Servicio s",resp);
+        return this.sugerencias=resp[0]
+      })
+    )
+  }
+  cargarSugerenciasAdmin(uid){
+    this.menusCollection = this.afs.collection<any>('menus', ref => ref.where('uid', '==', uid).where('tipo','==','sugerencias').limit(1));
+    return this.menusCollection.valueChanges().pipe(
+      map(resp=>{
+        console.log("Sugerencias Servicio",resp);
+        return this.sugerenciasAdmin=resp[0]
       })
     )
   }

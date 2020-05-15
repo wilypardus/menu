@@ -1,5 +1,7 @@
-<div class="row">
+<div class="row d-inline">
     <button class="btn btn-outline-info mr-1" routerLink="/menu/nuevo"><i class="fa fa-plus"></i> Nuevo Menú</button>
+    <button *ngIf="sugerenciaId!='no'" class="btn btn-info mr-1 float-right" (click)="putSugerencia(sugerenciaId)">Carta de sugerencias</button>
+    <button *ngIf="sugerenciaId=='no'" class="btn btn-info mr-1 float-right" (click)="putSugerencia(uid)">Crear carta de sugerencias</button>
 </div>
 <table class="table mt-3  table-hover">
     <thead>
@@ -11,7 +13,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let menu of  _menusService.menus;let i=index">
+        <tr *ngFor="let menu of _menusService.menus;let i=index">
             <td scope="row">{{i+1}}</td>
             <th>{{menu.name}}</th>
             <td class="text-center">

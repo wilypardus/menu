@@ -32,6 +32,9 @@
                         <a routerLink="/register" class="txt1">
                           ¿No tienes cuenta?
                       </a>
+                        <span (click)="open(content)" class="txt1">
+                        He olvidado la contraseña
+                    </span>
                     </div>
                 </div>
 
@@ -41,7 +44,24 @@
                   </button>
                 </div>
 
+
             </form>
         </div>
     </div>
 </div>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Recuperar contraseña</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+    </div>
+    <div class="modal-body">
+        <app-recovery></app-recovery>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" (click)="c('Save click')">Cancelar</button>
+    </div>
+</ng-template>
+<span (click)="_auth.authWithFacebook()">Facebook</span>
+<span (click)="_auth.authWithGoogle()">Google</span>

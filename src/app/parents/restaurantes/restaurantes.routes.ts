@@ -6,21 +6,21 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { AdminMenuComponent } from 'src/app/parents/restaurantes/admin-menu/admin-menu.component';
 import { VistaMenuComponent } from 'src/app/parents/restaurantes/vista-menu/vista-menu.component';
 import { RestaurantesComponent } from './restaurantes.component';
-
+import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 
 
 
 const restaurantesRoutes: Routes = [
 
   {path: '',
-  component: RestaurantesComponent,canActivate:[AuthGuard],
+  component: RestaurantesComponent,canActivate:[AngularFireAuthGuard],
   children:[
 
-{ path: 'menu/:id', component: MenuComponent, canActivate:[AuthGuard]},
-{ path: 'user', component: UserSettingsComponent, canActivate:[AuthGuard]},
-{ path: 'admin/:id', component: AdminMenuComponent, canActivate:[AuthGuard]},
-{ path: 'menus', component: MenusFirebaseComponent, canActivate:[AuthGuard]},
-{ path: 'preview/:id', component: VistaMenuComponent, canActivate:[AuthGuard]},
+{ path: 'menu/:id', component: MenuComponent, canActivate:[AngularFireAuthGuard]},
+{ path: 'user', component: UserSettingsComponent, canActivate:[AngularFireAuthGuard]},
+{ path: 'admin/:id', component: AdminMenuComponent, canActivate:[AngularFireAuthGuard]},
+{ path: 'menus', component: MenusFirebaseComponent, canActivate:[AngularFireAuthGuard]},
+{ path: 'preview/:id', component: VistaMenuComponent, canActivate:[AngularFireAuthGuard]},
 
 
 { path: '', pathMatch: 'full', redirectTo: '/menus' }

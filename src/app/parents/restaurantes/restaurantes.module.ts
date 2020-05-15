@@ -36,7 +36,7 @@ import { UploadComponent } from '../../component/upload/upload.component';
 // import { SetMenuComponent } from './pages/set-menu/set-menu.component';
 import { RestaurantesComponent } from './restaurantes.component';
 import { QRCodeModule } from 'angularx-qrcode';
-
+import { PipesModule } from '../../pipes/pipes.module';
 
 
 
@@ -95,7 +95,8 @@ import { QRCodeModule } from 'angularx-qrcode';
     //AngularFireAnalyticsModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
-    QRCodeModule
+    QRCodeModule,
+    PipesModule
 
 
   ],

@@ -29,7 +29,7 @@ const appRoutes: Routes = [
 // { path: 'admin/:id', component: AdminMenuComponent, canActivate:[AuthGuard]},
 // { path: 'menus', component: MenusFirebaseComponent, canActivate:[AuthGuard]},
 { path: 'login', component: LoginComponent},
-// { path: 'register', component: RegisterComponent},
+{ path: 'register', component: RegisterComponent},
 // // { path: 'pruebas', component: PruebasComponent},
 // { path: 'u/:id', component: CustomerMenuComponent},
 // { path: 'revisualización/:id', component: VistaMenuComponent, canActivate:[AuthGuard]},

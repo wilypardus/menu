@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +20,13 @@ public menuUsr:any[]=[];
 
 constructor(
     private http: HttpClient,
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private toastr: ToastrService
   ) {
    }
 
    cargarUsrMenu(id){
+
     this.menusCollection = this.afs.collection<any>('menus', ref => ref.where('uid', '==', id).where('activo','==',true).limit(1));
     return this.menusCollection.valueChanges().pipe(
       map(resp=>{
@@ -38,8 +41,8 @@ constructor(
 
   // return this.menuDoc.update({'plato': !estado});
   // }
-  cargarMenus(){
-    this.menusCollection = this.afs.collection<any>('menus');
+  cargarMenus(uid){
+    this.menusCollection = this.afs.collection<any>('menus', ref => ref.where('uid', '==', uid));
     return this.menusCollection.valueChanges({ idField: 'eventId' }).pipe(
       map(resp=>{
         //console.log("Menus",resp);
@@ -96,12 +99,19 @@ actualizarMenu(menu,id){
 actualizarEstado(id,estado){
 
   this.menuDoc=this.afs.doc<any>(`menus/${id}`)
+  if(estado){
+    this.toastr.warning('Carta desactivada!')
+  }else{
+    this.toastr.success('Carta activada!')
+  }
   return this.menuDoc.update({activo: !estado});
 
 }
 actualizarEstadoPlato(id,m,p,estado){
 
   this.menuDoc=this.afs.doc<any>(`menus/${id}.categorias[${m}].platos`)
+
+
   return this.menuDoc.update({activo: !estado});
 
 }

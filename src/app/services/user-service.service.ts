@@ -4,6 +4,8 @@ import { map } from 'rxjs/operators';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { UserModel } from '../models/user.model';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +20,8 @@ export class UserService {
  public usuarios:any []=[];
   constructor(
     private http: HttpClient,
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private toastr: ToastrService
   ) {
 this.uid=localStorage.getItem('lid');
 this.cargarUser(this.uid);
@@ -45,6 +48,7 @@ this.cargarUser(this.uid);
 
   actualizarUsrSettings(usuario,uid){
     this.userDoc=this.afs.doc<any>(`users/${uid}`)
+    this.toastr.success('Cambios guardados!')
     return this.userDoc.update(usuario);
 
   }

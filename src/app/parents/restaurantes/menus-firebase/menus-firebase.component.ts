@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenusService } from '../../../services/menus.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -13,8 +13,10 @@ import { Router } from '@angular/router';
 })
 export class MenusFirebaseComponent implements OnInit {
 uid:string
-  constructor(public _menusService:MenusService,private router:Router) {
-    this._menusService.cargarMenus().subscribe();
+  constructor(public _menusService:MenusService,private router:Router,private toastr: ToastrService) {
+    this.uid=localStorage.getItem('lid')
+    if(this.uid==null){  this.uid='esteuidestavacio'  }
+    this._menusService.cargarMenus(this.uid).subscribe();
    }
 
   ngOnInit(): void {
@@ -62,8 +64,9 @@ uid:string
     }
     actualizarEstado(id,estado){
       this._menusService.actualizarEstado(id,estado).then((resp)=>{
-        //console.log(resp);
+
       })
     }
+
 
 }

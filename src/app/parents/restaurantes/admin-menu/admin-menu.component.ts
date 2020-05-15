@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenusService } from '../../../services/menus.service';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-menu',
@@ -12,7 +13,8 @@ export class AdminMenuComponent implements OnInit {
   id:string;
   menuUsr;
 
-  constructor(public _menusService:MenusService, private route:ActivatedRoute) {
+
+  constructor(public _menusService:MenusService, private route:ActivatedRoute,private toastr: ToastrService) {
   this.id = this.route.snapshot.paramMap.get('id');
   this._menusService.cargarUsrMenu(this.id).subscribe();
   this._menusService.cargarUsrMenu(this.id).subscribe((resp:any)=>{
@@ -37,6 +39,11 @@ export class AdminMenuComponent implements OnInit {
     const menuId=this.menuUsr[0].id
 
     this._menusService.actualizarMenu(this.menuUsr[0],menuId)
+    if(estado){
+      this.toastr.warning('Plato marcadado como no disponible!')
+    }else{
+      this.toastr.success('Plato disponible!')
+    }
     console.log(this.menuUsr);
 
   }

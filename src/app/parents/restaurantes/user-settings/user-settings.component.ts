@@ -20,7 +20,7 @@ import { DOCUMENT } from '@angular/common';
 export class UserSettingsComponent implements OnInit {
 usuario:UserModel;
 uid;
-urlImage:string;
+urlImage:string='';
 upLoadPercent: Observable<number>;
 urlCarta:string;
 
@@ -57,7 +57,7 @@ constructor(
           console.log(resp);
           this.usuario=resp
           localStorage.setItem('enventId',resp.eventId);
-          this.urlCarta=document.location.host+"/#/carta/"+this.usuario.uid;
+          this.urlCarta="http://"+document.location.host+"/#/carta/"+this.usuario.uid;
           console.log(this.urlCarta);
 
 

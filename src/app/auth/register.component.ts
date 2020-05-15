@@ -26,14 +26,15 @@ if (form.invalid){
   return
 }
 this._auth.nuevoUsuario(this.usuario)
-.subscribe(resp=>{
+.then(resp=>{
   //console.log(resp);
   if(this.recordarme){
     localStorage.setItem('email',this.usuario.email)
   }
   this.router.navigateByUrl('/menus')
-},(err)=>{
-  console.log(err.error.error.message);
+})
+.catch(err=>{
+  console.log(err);
 })
   }
 

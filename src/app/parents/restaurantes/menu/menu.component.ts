@@ -6,7 +6,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -65,7 +65,8 @@ export class MenuComponent implements OnInit {
     private route:ActivatedRoute,
     private router:Router,
     private storage: AngularFireStorage,
-    config: NgbModalConfig, private modalService: NgbModal
+    config: NgbModalConfig, private modalService: NgbModal,
+    private toastr: ToastrService
     ) {
 
       this.uid=localStorage.getItem('lid');
@@ -127,8 +128,9 @@ ngOnInit():void{
 
   crearMenu() {
     if (this.idTemp){
-      this,this.myForm.get('modified').setValue(new Date())
-      alert("Registro actualizado");
+      this.myForm.get('modified').setValue(new Date())
+      //alert("Registro actualizado");
+      this.toastr.success('Cambios guardados');
       this._menusService.actualizarMenu(this.myForm.value,this.idTemp).then(resp => {
         //console.log(resp);
         this.router.navigateByUrl('/menus')
@@ -143,14 +145,25 @@ ngOnInit():void{
         this.idTemp=resp.id
         this._menusService.actualizarMenu(this.myForm.value,this.idTemp)
         //console.log(resp);
+      });
+    }
+  }
 
+  duplicarMenu() {
 
-
+         this,this.myForm.get('created').setValue(new Date())
+      const nombreDup=this.myForm.get('name').value
+      console.log(nombreDup);
+      this.myForm.get('name').setValue(nombreDup+' copia')
+      //alert("Registro actualizado");
+      this.toastr.success('Menú duplicado');
+      this._menusService.crearMenu(this.myForm.value).then(resp => {
+        //console.log(resp);
+        this.router.navigateByUrl('/menus/'+this.idTemp)
       });
 
-    }
-
   }
+
 
   addNewCategoria() {
     const control = this.myForm.get('categorias') as FormArray;

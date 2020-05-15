@@ -35,6 +35,10 @@ import { UploadComponent } from './component/upload/upload.component';
 import { SetMenuComponent } from './pages/set-menu/set-menu.component';
 import { RestaurantesModule } from './parents/restaurantes/restaurantes.module';
 import { CustomerModule } from './parents/customer/customer.module';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
+import { RecoveryComponent } from './auth/recovery.component';
 
 
 
@@ -80,6 +84,10 @@ import { CustomerModule } from './parents/customer/customer.module';
     SetMenuComponent,
 
 
+
+    RecoveryComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -93,11 +101,14 @@ import { CustomerModule } from './parents/customer/customer.module';
     AngularFirestoreModule,
     AngularFireStorageModule,
     RestaurantesModule,
-    CustomerModule
+    CustomerModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
+
 
 
   ],
-  providers: [ChatService],
+  providers: [ChatService,AngularFireAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

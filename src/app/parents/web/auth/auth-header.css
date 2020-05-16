@@ -1,0 +1,9 @@
+.container-fluid {
+    padding: 0px!important;
+}
+
+.app-landing-2-header .background-shape-main {
+    transform: translate(28%, -49%) skewY(19deg)!important;
+    right: 5px!important;
+    ;
+}

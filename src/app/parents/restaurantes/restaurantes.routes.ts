@@ -13,7 +13,7 @@ import { SugerenciasComponent } from './menu/sugerencias.component';
 
 const restaurantesRoutes: Routes = [
 
-  {path: '',
+  {path: 'admin',
   component: RestaurantesComponent,canActivate:[AngularFireAuthGuard],
   children:[
 

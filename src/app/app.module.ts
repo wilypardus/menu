@@ -39,6 +39,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import { RecoveryComponent } from './auth/recovery.component';
+import { WebModule } from './parents/web/web.module';
+
+
 
 
 
@@ -92,6 +95,14 @@ import { RecoveryComponent } from './auth/recovery.component';
 
 
 
+
+
+
+
+
+
+
+
   ],
   imports: [
     BrowserModule,
@@ -108,6 +119,7 @@ import { RecoveryComponent } from './auth/recovery.component';
     CustomerModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
+    WebModule
 
 
 

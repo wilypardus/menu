@@ -15,6 +15,8 @@ import { AdminMenuComponent } from './parents/restaurantes/admin-menu/admin-menu
 import { UserSettingsComponent } from './parents/restaurantes/user-settings/user-settings.component';
 import { SetMenuComponent } from './pages/set-menu/set-menu.component';
 import { VistaMenuComponent } from './parents/restaurantes/vista-menu/vista-menu.component';
+import { WebComponent } from './parents/web/web.component';
+import { HomeComponent } from './parents/web/home.component';
 
 
 
@@ -28,14 +30,16 @@ const appRoutes: Routes = [
 // // { path: 'menus', component: MenusComponent, canActivate:[AuthGuard]},
 // { path: 'admin/:id', component: AdminMenuComponent, canActivate:[AuthGuard]},
 // { path: 'menus', component: MenusFirebaseComponent, canActivate:[AuthGuard]},
-{ path: 'login', component: LoginComponent},
-{ path: 'register', component: RegisterComponent},
+
+{ path: '', component: WebComponent},
+// { path: 'login', component: LoginComponent},
+// { path: 'register', component: RegisterComponent},
 // // { path: 'pruebas', component: PruebasComponent},
 // { path: 'u/:id', component: CustomerMenuComponent},
 // { path: 'revisualización/:id', component: VistaMenuComponent, canActivate:[AuthGuard]},
 
 
-{ path: '**', pathMatch: 'full', redirectTo: 'menus' }
+{ path: '**', pathMatch: 'full', redirectTo: '' }
 
 ];
 

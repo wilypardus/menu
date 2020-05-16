@@ -13,7 +13,7 @@ export class ImagenPipe implements PipeTransform {
   transform(img: string): any {
 
   let noImageUrl=URL_NOIMAGE;
-  if(!img){
+  if(!img|| img==null){
     return noImageUrl
   }
     return img

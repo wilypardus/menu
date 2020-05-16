@@ -115,8 +115,11 @@ this.userData=afAuth.authState;
       // console.log(resp);
       const uid=resp.user.uid
       localStorage.setItem('lid',uid)
+      this.usuarioSttTemp.uid=uid;
       this.usuarioSttTemp.email=resp.user.email;
-      this.usuarioSttTemp.nombre=resp.user.displayName;
+      this.usuarioSttTemp.nombre=usuario.nombre;
+      this.usuarioSttTemp.img='no';
+
       this._userService.crearUsrSettings(this.usuarioSttTemp);
     })
     .catch(err=>{

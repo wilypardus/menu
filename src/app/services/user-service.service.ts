@@ -17,6 +17,8 @@ export class UserService {
   private usersCollection: AngularFirestoreCollection<any>;
   private userDoc: AngularFirestoreDocument<any>;
  public usuario:UserModel;
+ public usuarioSettings:UserModel[];
+
  public usuarios:any []=[];
   constructor(
     private http: HttpClient,
@@ -36,6 +38,15 @@ this.cargarUser(this.uid);
       map(resp=>{
         //console.log("usuario filtrado por uid",resp);
        return this.usuario=resp[0]
+      })
+    )
+  }
+  cargarUserSettings(uid){
+    this.usersCollection = this.afs.collection<any>('users', ref => ref.where('uid', '==', uid).limit(1));
+    return this.usersCollection.valueChanges({ idField: 'eventId' }).pipe(
+      map(resp=>{
+        //console.log("usuario filtrado por uid",resp);
+       return this.usuarioSettings=resp
       })
     )
   }

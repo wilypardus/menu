@@ -51,12 +51,16 @@ constructor(
       });
 
       this.uid=localStorage.getItem('lid');
+      // console.log(this.uid);
 
-      this._userService.cargarUser(this.uid).subscribe(
+      this._userService.cargarUserSettings(this.uid).subscribe(
         resp=>{
-          console.log(resp);
-          this.usuario=resp
-          localStorage.setItem('enventId',resp.eventId);
+          console.log("Respuesta",resp);
+          this.usuario=resp[0]
+          this.usuario.img=resp[0].img
+          this.usuario.uid=resp[0].uid
+          this.urlImage=resp[0].img
+          localStorage.setItem('enventId',resp[0].eventId);
           this.urlCarta="http://"+document.location.host+"/#/carta/"+this.usuario.uid;
           console.log(this.urlCarta);
 
@@ -64,7 +68,7 @@ constructor(
           //Seteo de Datos
           this.usuarioForm.get('nombre').setValue(this.usuario.nombre);
           this.usuarioForm.get('email').setValue(this.usuario.email);
-          this.usuario.img=resp.img;
+          this.usuario.img=resp[0].img;
           this.usuarioForm.get('adminStatus').setValue(this.usuario.adminProtected.status);
           this.usuarioForm.get('rss.facebook').setValue(this.usuario.rss.facebook);
           this.usuarioForm.get('rss.instagram').setValue(this.usuario.rss.instagram);
@@ -88,7 +92,7 @@ constructor(
       resp=>{
 
         const eventId=resp.eventId
-        console.log(eventId);
+        // console.log(eventId);
         this._userService.actualizarUsrSettings(this.usuario,eventId)
       }
       )

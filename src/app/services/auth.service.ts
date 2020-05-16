@@ -118,7 +118,7 @@ this.userData=afAuth.authState;
       this.usuarioSttTemp.uid=uid;
       this.usuarioSttTemp.email=resp.user.email;
       this.usuarioSttTemp.nombre=usuario.nombre;
-      this.usuarioSttTemp.img='no';
+      this.usuarioSttTemp.img='';
 
       this._userService.crearUsrSettings(this.usuarioSttTemp);
     })
